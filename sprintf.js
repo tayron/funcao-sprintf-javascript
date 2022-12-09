@@ -1,14 +1,13 @@
-function sprintf() {
-    var args = arguments,
-    string = args[0],
-    i = 1;
+function sprintf(...parameters) {    
+    const string = parameters[0];
+    let i = 1;
     return string.replace(/%((%)|s|d)/g, function (m) {
         // m is the matched format, e.g. %s, %d
-        var val = null;
+        let val = null;
         if (m[2]) {
             val = m[2];
         } else {
-            val = args[i];
+            val = parameters[i];
             // A switch statement so that the formatter can be extended. Default is %s
             switch (m) {
                 case '%d':
